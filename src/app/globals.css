@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes slow-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 8s linear infinite, float 4s ease-in-out infinite;
+}
+
+.animate-hover-slow {
+  transition: transform 0.5s ease-out;
+}
+
+.animate-hover-slow:hover {
+  animation: slow-spin 12s linear infinite, float 6s ease-in-out infinite;
+}
+
+.clip-path-diagonal {
+  clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+}
