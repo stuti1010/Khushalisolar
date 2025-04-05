@@ -19,7 +19,7 @@ const SavingsCalculator = () => {
           return;
         }
       
-        const estimatedSavings = (billAmount * 0.7).toFixed(2); // 70% savings
+        const estimatedSavings = (billAmount * 0.9).toFixed(2); // 90% savings
         setSavings(parseFloat(estimatedSavings)); 
       };
       
