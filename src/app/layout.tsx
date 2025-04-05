@@ -3,10 +3,11 @@
 
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/Navbar/page";
-import Footer from "@/Footer/page";
+// import Navbar from "@/Navbar/page";
+// import Footer from "@/Footer/page";
 import { useState, useEffect } from "react";
 import LoadingScreen from "./Components/LoadingScreen";
+import Payment from "./Components/Payment";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,7 @@ const geistMono = Geist_Mono({
 
 
 export default function RootLayout({
-  children,
+  // children,
 }: Readonly<{ children: React.ReactNode }>) {
   const [loading, setLoading] = useState(true);
 
@@ -37,9 +38,10 @@ export default function RootLayout({
           <LoadingScreen setLoading={setLoading} /> 
         ) : (
           <>
-            <Navbar />
+          <Payment/>
+            {/* <Navbar />
             {children}
-            <Footer />
+            <Footer /> */}
           </>
         )}
       </body>
