@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const ContactUs = () => {
-  
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -45,7 +45,7 @@ const ContactUs = () => {
 
   return (
     <div className="py-12 container mx-auto overflow-hidden">
-     
+
       <div className="relative container mx-auto w-full h-[50vh] sm:h-[40vh] md:h-[50vh] lg:h-[50vh] flex items-center justify-center">
         <Image
           src="/background.jpg"
@@ -89,7 +89,7 @@ const ContactUs = () => {
         >
           <motion.a
             variants={itemVariants}
-            href="https://facebook.com/khushalisolar"
+            href="https://www.facebook.com/profile.php?id=61574184744051"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300"
@@ -105,7 +105,7 @@ const ContactUs = () => {
               <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
             </svg>
           </motion.a>
-          <motion.a
+          {/* <motion.a
             variants={itemVariants}
             href="https://twitter.com/khushalisolar"
             target="_blank"
@@ -122,13 +122,13 @@ const ContactUs = () => {
             >
               <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
             </svg>
-          </motion.a>
+          </motion.a> */}
           <motion.a
             variants={itemVariants}
-            href="https://instagram.com/khushalisolar"
+            href="https://www.instagram.com/khushalisolar/?hl=en"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300"
+            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition duration-300"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -143,22 +143,23 @@ const ContactUs = () => {
           </motion.a>
           <motion.a
             variants={itemVariants}
-            href="https://linkedin.com/company/khushalisolar"
+            href="https://wa.me/9691013327"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition duration-300"
+            className="flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-500 text-white rounded-full hover:bg-green-600 transition duration-300"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
-              viewBox="0 0 24 24"
+              viewBox="0 0 32 32"
               className="w-6 h-6 sm:w-8 sm:h-8"
             >
-              <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+              <path d="M16 .003C7.163.003.001 7.164.001 16c0 2.818.735 5.468 2.018 7.779L.001 32l8.393-2.188A15.946 15.946 0 0 0 16 31.997C24.837 31.997 32 24.836 32 16S24.837.003 16 .003zm0 29.475a13.378 13.378 0 0 1-6.816-1.84l-.488-.288-4.976 1.296 1.328-4.851-.318-.5A13.43 13.43 0 0 1 2.53 16c0-7.414 6.038-13.452 13.47-13.452 7.412 0 13.444 6.038 13.444 13.452 0 7.412-6.032 13.478-13.444 13.478zm7.735-10.185c-.412-.206-2.442-1.206-2.82-1.342-.378-.137-.656-.206-.935.206s-1.07 1.342-1.312 1.618c-.242.274-.482.309-.893.103s-1.737-.639-3.31-2.04c-1.222-1.09-2.05-2.438-2.288-2.85-.238-.412-.026-.635.18-.84.184-.184.412-.48.618-.72.206-.242.274-.412.412-.686.137-.274.068-.515-.034-.72-.103-.206-.935-2.25-1.28-3.08-.337-.812-.682-.703-.935-.717l-.797-.013c-.274 0-.72.103-1.097.515s-1.44 1.408-1.44 3.43 1.474 3.976 1.68 4.25c.206.274 2.9 4.41 7.024 6.19 4.123 1.78 4.123 1.187 4.867 1.118.744-.068 2.442-.995 2.785-1.958.343-.963.343-1.787.24-1.958-.103-.17-.377-.274-.79-.48z" />
             </svg>
           </motion.a>
+
         </motion.div>
       </div>
 
@@ -173,7 +174,7 @@ const ContactUs = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-70"></div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 md:gap-12">
-          
+
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -223,7 +224,7 @@ const ContactUs = () => {
                 Call Support: +91 96910 13327
               </motion.a>
               <motion.a
-                href="mailto:support@khushalisolar.com"
+                href="mailto:khushalisolar@gmail.com"
                 className="inline-block bg-blue-500 text-white font-bold py-2 px-6 sm:py-3 sm:px-8 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 text-sm sm:text-base md:text-lg"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}

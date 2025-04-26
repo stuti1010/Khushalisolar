@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from 'emailjs-com';
 
 interface FormData {
   name: string;
@@ -22,12 +23,14 @@ const ContactForm = () => {
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionMessage, setSubmissionMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const validate = () => {
     const tempErrors: { [key: string]: string } = {};
     if (!formData.name) tempErrors.name = 'Name is required';
     if (!formData.email) tempErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) tempErrors.email = 'Invalid email';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) tempErrors.email = 'Invalid email address';
     if (!formData.subject) tempErrors.subject = 'Subject is required';
     if (!formData.message) tempErrors.message = 'Message is required';
     setErrors(tempErrors);
@@ -38,16 +41,41 @@ const ContactForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      alert('Form submitted successfully');
-      setFormData({ name: '', email: '', subject: '', message: '', company: '', phone: '' });
-      setErrors({});
+      setIsSubmitting(true);
+      setSubmissionMessage(null);
+
+      try {
+        const result = await emailjs.send(
+          'service_qmgumuc',
+          'template_1wyu0j4',
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            company: formData.company,
+            phone: formData.phone,
+          },
+          '7STIvWm6NDuI9tmUY'
+        );
+
+        console.log(result.text);
+        setSubmissionMessage({ type: 'success', text: '🎉 Message sent successfully!' });
+        setFormData({ name: '', email: '', subject: '', message: '', company: '', phone: '' });
+        setErrors({});
+      } catch (error) {
+        console.error(error);
+        setSubmissionMessage({ type: 'error', text: '❌ Failed to send message. Please try again later.' });
+      }
+
+      setIsSubmitting(false);
+      setTimeout(() => setSubmissionMessage(null), 5000);
     }
   };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -84,7 +112,7 @@ const ContactForm = () => {
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-20 overflow-hidden">
-      {/* Left Side with Wave Background */}
+      {/* Left Side */}
       <motion.div
         className="w-full md:w-1/2 h-[400px] sm:h-[450px] md:h-full min-h-[500px] relative"
         variants={waveVariants}
@@ -129,82 +157,105 @@ const ContactForm = () => {
         animate="visible"
         className="w-full md:w-1/2 bg-white p-4 sm:p-6 md:p-8 rounded-lg shadow-xl shadow-blue-300 mt-4 sm:mt-6 md:mt-0 relative z-10"
       >
+        {/* Submission message */}
+        {submissionMessage && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className={`mb-4 text-center font-medium py-3 px-4 rounded-xl ${
+              submissionMessage.type === 'success'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-red-100 text-red-800'
+            }`}
+          >
+            {submissionMessage.text}
+          </motion.div>
+        )}
+
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          <motion.div variants={itemVariants} className="col-span-1">
+          {/* Name */}
+          <motion.div variants={itemVariants}>
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Name*</label>
             <input
               type="text"
               name="name"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+              className="w-full bg-blue-50 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
               placeholder="Name"
               onChange={handleChange}
               value={formData.name}
             />
-            {errors.name && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.name}</p>}
+            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
           </motion.div>
 
+          {/* Company */}
           <motion.div variants={itemVariants}>
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Company</label>
             <input
               type="text"
               name="company"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+              className="w-full bg-blue-50 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
               placeholder="Company"
               onChange={handleChange}
               value={formData.company}
             />
           </motion.div>
 
+          {/* Email */}
           <motion.div variants={itemVariants}>
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Email*</label>
             <input
               type="email"
               name="email"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+              className="w-full bg-blue-50 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
               placeholder="Email"
               onChange={handleChange}
               value={formData.email}
             />
-            {errors.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email}</p>}
+            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
           </motion.div>
 
+          {/* Phone */}
           <motion.div variants={itemVariants}>
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Phone</label>
             <input
               type="text"
               name="phone"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+              className="w-full bg-blue-50 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
               placeholder="Phone"
               onChange={handleChange}
               value={formData.phone}
             />
           </motion.div>
 
+          {/* Subject */}
           <motion.div variants={itemVariants} className="md:col-span-2">
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Subject*</label>
             <input
               type="text"
               name="subject"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
+              className="w-full bg-blue-50 px-4 py-3 rounded-full border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300"
               placeholder="Subject"
               onChange={handleChange}
               value={formData.subject}
             />
-            {errors.subject && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.subject}</p>}
+            {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
           </motion.div>
 
+          {/* Message */}
           <motion.div variants={itemVariants} className="md:col-span-2">
             <label className="block text-gray-700 font-medium text-sm sm:text-base">Message*</label>
             <textarea
               name="message"
-              className="w-full bg-blue-50 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300 h-24 sm:h-28 md:h-32 resize-none"
+              className="w-full bg-blue-50 px-4 py-3 rounded-2xl border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 transition-all duration-300 h-32 resize-none"
               placeholder="Message"
               onChange={handleChange}
               value={formData.message}
             />
-            {errors.message && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.message}</p>}
+            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
           </motion.div>
 
+          {/* Submit Button */}
           <motion.div
             variants={itemVariants}
             className="md:col-span-2 flex justify-center"
@@ -213,9 +264,10 @@ const ContactForm = () => {
           >
             <button
               type="submit"
-              className="bg-blue-500 text-white py-2 px-8 sm:py-3 sm:px-10 w-full max-w-[200px] sm:max-w-xs rounded-full hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base"
+              disabled={isSubmitting}
+              className="bg-blue-500 text-white py-3 px-10 w-full max-w-[200px] rounded-full hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg text-base"
             >
-              Submit
+              {isSubmitting ? 'Sending...' : 'Submit'}
             </button>
           </motion.div>
         </form>

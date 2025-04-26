@@ -1,4 +1,4 @@
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 import Image from "next/image";
@@ -155,29 +155,29 @@ const Footer = () => {
             <p className="text-sm mt-3">Get the latest news & updates</p>
             <div className="flex space-x-4 mt-4">
               <Link
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61574184744051"
                 className="text-white bg-blue-500 p-3 rounded-2xl transform hover:scale-125 transition-transform duration-300"
               >
                 <FaFacebookF />
               </Link>
               <Link
-                href="#"
+                href="https://wa.me/9691013327" 
                 className="text-white bg-blue-500 p-3 rounded-2xl transform hover:scale-125 transition-transform duration-300"
               >
-                <FaTwitter />
+                <FaWhatsapp/>
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/khushalisolar/?hl=en"
                 className="text-white bg-blue-500 p-3 rounded-2xl transform hover:scale-125 transition-transform duration-300"
               >
                 <FaInstagram />
               </Link>
-              <Link
+              {/* <Link
                 href="#"
                 className="text-white bg-blue-500 rounded-2xl p-3 transform hover:scale-125 transition-transform duration-300"
               >
                 <FaLinkedinIn />
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

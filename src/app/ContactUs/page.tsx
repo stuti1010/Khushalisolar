@@ -6,6 +6,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Contact from "../Components/Contact";
 import ContactUs from "../Components/ContactUs";
 
+
 export default function ContactBanner() {
   const headingVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -108,7 +109,7 @@ export default function ContactBanner() {
                   <FaEnvelope className="text-blue-600 text-xl" />
                   <div>
                     <h4 className="font-semibold text-sm sm:text-base">Email</h4>
-                    <p className="text-gray-600 text-xs sm:text-sm">info@khushalisolar.com</p>
+                    <p className="text-gray-600 text-xs sm:text-sm">khushalisolar@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -140,6 +141,7 @@ export default function ContactBanner() {
 
 {/**second part  */}
       <Contact />
+      
      
      {/**third part  */}
      <ContactUs/>
