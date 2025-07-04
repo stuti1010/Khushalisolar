@@ -73,10 +73,10 @@ const WhyChooseUs = () => {
         >
           <h2 className="text-3xl font-bold">About Us</h2>
           <p className="text-gray-100 mt-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tristique, urna eu tincidunt elementum, nisi nunc feugiat justo, ut faucibus felis elit ut metus.
+           Local presence in Indore—allowing for quicker support, installation, and maintenance for regional clients.
           </p>
           <p className="text-gray-100 mt-4 mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
+           Offers end-to-end solar solutions: from system design and installation to monitoring and battery-backed storage.
           </p>
           <button className="relative px-8 py-3 font-semibold text-blue-500 bg-white border-2 border-blue-500 hover:border-white rounded-md shadow-md transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-lg overflow-hidden group">
   <span className="absolute inset-0 bg-blue-500 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
